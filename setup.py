@@ -13,7 +13,7 @@ with open("requirements.txt", encoding="utf-8") as f:
 
 setup(
     name="playwright-mcp-fetch",
-    version="0.1.0",
+    version="0.1.1",
     description="A MCP server with playwright fetch tools",
     long_description=long_description,
     long_description_content_type="text/markdown",
