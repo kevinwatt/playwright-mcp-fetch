@@ -3,7 +3,7 @@ name = "playwright-mcp-fetch"
 version = "0.1.1"
 description = "A MCP server with playwright fetch tools"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "Kevin Watt", email = ""}
@@ -35,4 +35,4 @@ python_files = "test_*.py"
 
 [tool.black]
 line-length = 100
-target-version = ["py38", "py39", "py310", "py311"] 
+target-version = ["py310", "py311", "py312"] 

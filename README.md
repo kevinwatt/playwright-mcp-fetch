@@ -1,8 +1,12 @@
 # playwright-mcp-fetch
 
-**Current version: 0.1.0**
+**Current version: 0.1.1**
 
 This tool provides a Model Context Protocol (MCP) server for fetching content from websites and converting it to different formats using Playwright.
+
+## Requirements
+
+- Python 3.10 or higher
 
 ## Features
 
