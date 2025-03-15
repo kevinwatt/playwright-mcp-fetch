@@ -9,7 +9,7 @@ authors = [
     {name = "Kevin Watt", email = ""}
 ]
 dependencies = [
-    "mcp>=1.1.2",
+    "mcp>=1.4.1",
     "playwright>=1.40.0",
     "pydantic>=2.0.0",
     "fastapi>=0.104.0", 
