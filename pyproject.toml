@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
-    {name = "Kevin Watt", email = ""}
+    {name = "Dewei Yen", email = "k@funmula.com"}
 ]
 dependencies = [
     "mcp>=1.4.1",
