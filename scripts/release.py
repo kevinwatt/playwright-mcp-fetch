@@ -3,10 +3,11 @@
 版本發布腳本。
 
 用法：
-    python scripts/release.py [版本號]
+    python scripts/release.py [版本號] [--push]
 
 例如：
-    python scripts/release.py 0.1.1
+    python scripts/release.py 0.1.1        # 只更新版本號和創建標籤
+    python scripts/release.py 0.1.1 --push # 更新版本號、創建標籤並推送到 GitHub
 """
 
 import os
@@ -61,30 +62,47 @@ def git_commit_and_tag(version):
     tag = f"v{version}"
     subprocess.run(["git", "tag", "-a", tag, "-m", f"Version {version}"], check=True)
     print(f"✅ 已創建標籤 {tag}")
+    
+    return tag
 
-    # 推送更改和標籤
-    print("\n要推送更改和標籤，請運行以下命令：")
-    print(f"git push origin main && git push origin {tag}")
+def push_changes(tag):
+    """推送更改和標籤到 GitHub"""
+    print("🚀 正在推送更改到 GitHub...")
+    subprocess.run(["git", "push", "origin", "main"], check=True)
+    print("✅ 已推送主分支更改")
+    
+    print(f"🚀 正在推送標籤 {tag} 到 GitHub...")
+    subprocess.run(["git", "push", "origin", tag], check=True)
+    print(f"✅ 已推送標籤 {tag}")
+    
+    print("\n🎉 GitHub Actions 將自動創建發布版本並發布到 PyPI")
+    print(f"   請檢查: https://github.com/kevinwatt/playwright-mcp-fetch/actions")
 
 def main():
     """主函數"""
-    if len(sys.argv) != 2:
+    if len(sys.argv) < 2:
         print(__doc__)
         sys.exit(1)
 
     version = sys.argv[1]
+    auto_push = "--push" in sys.argv
+    
     if not re.match(r"^\d+\.\d+\.\d+$", version):
         print("錯誤：版本號格式應為 X.Y.Z")
         sys.exit(1)
 
     print(f"🚀 準備發布版本 {version}...")
     update_version(version)
-    git_commit_and_tag(version)
-    print(f"\n✨ 版本 {version} 準備就緒！")
-    print("\n接下來：")
-    print("1. 推送更改和標籤：git push origin main && git push origin v" + version)
-    print("2. 在 GitHub 上創建一個新的發布版本：https://github.com/kevinwatt/playwright-mcp-fetch/releases/new")
-    print("3. GitHub Actions 將自動構建並發布到 PyPI")
+    tag = git_commit_and_tag(version)
+    
+    if auto_push:
+        push_changes(tag)
+    else:
+        print(f"\n✨ 版本 {version} 準備就緒！")
+        print("\n要完成發布，請運行以下命令：")
+        print(f"git push origin main && git push origin {tag}")
+        print("\n或者下次使用 --push 參數自動推送：")
+        print(f"python scripts/release.py {version} --push")
 
 if __name__ == "__main__":
     main() 
