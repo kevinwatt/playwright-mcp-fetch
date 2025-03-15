@@ -1,0 +1,38 @@
+[project]
+name = "playwright-mcp-fetch"
+version = "0.1.0"
+description = "A MCP server with playwright fetch tools"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Kevin Watt", email = ""}
+]
+dependencies = [
+    "mcp>=1.1.2",
+    "playwright>=1.40.0",
+    "pydantic>=2.0.0",
+    "fastapi>=0.104.0", 
+    "uvicorn>=0.24.0",
+    "beautifulsoup4>=4.12.0",
+    "python-dotenv>=1.0.0",
+    "sse-starlette>=1.6.5",
+    "html2text>=2024.2.26",
+    "aiohttp>=3.9.0"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+playwright-mcp-fetch = "playwright_mcp_fetch.index:main"
+playwright-mcp-fetch-sse = "playwright_mcp_fetch.server:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"] 

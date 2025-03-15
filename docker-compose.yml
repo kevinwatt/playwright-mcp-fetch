@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  playwright-mcp-fetch:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - TRANSPORT_TYPE=sse
+      - fetch_html=Disable
+    restart: unless-stopped 

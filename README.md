@@ -1,4 +1,4 @@
-# MCP Fetch Tool
+# playwright-mcp-fetch
 
 **Current version: 0.1.0**
 
@@ -16,8 +16,8 @@ This tool provides a Model Context Protocol (MCP) server for fetching content fr
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/mcp-fetch.git
-cd mcp-fetch
+git clone https://github.com/kevinwatt/playwright-mcp-fetch.git
+cd playwright-mcp-fetch
 pip install -e .
 ```
 
@@ -34,14 +34,14 @@ playwright install
 ### Run as stdio MCP Server
 
 ```bash
-mcp-fetch
+playwright-mcp-fetch
 ```
 
 ### Run as SSE MCP Server
 
 ```bash
 # Run with the SSE transport
-mcp-fetch-sse
+playwright-mcp-fetch-sse
 ```
 
 This will start an HTTP server providing the following endpoints:
@@ -124,8 +124,8 @@ pytest
 Build and run with Docker:
 
 ```bash
-docker build -t mcp-fetch .
-docker run -p 3000:3000 -e TRANSPORT_TYPE=sse mcp-fetch
+docker build -t playwright-mcp-fetch .
+docker run -p 3000:3000 -e TRANSPORT_TYPE=sse playwright-mcp-fetch
 ```
 
 Or use Docker Compose:
@@ -134,10 +134,6 @@ Or use Docker Compose:
 docker-compose up -d
 ```
 
-## Acknowledgments
-
-This project is inspired by and ported from [@kevinwatt/biggo-eclimit-fetch-mcp](https://www.npmjs.com/package/@kevinwatt/biggo-eclimit-fetch-mcp).
-
 ## License
 
-MIT # playwright-mcp-fetch
+MIT
