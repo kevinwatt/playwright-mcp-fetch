@@ -1,6 +1,6 @@
 # playwright-mcp-fetch
 
-**Current version: 0.1.1**
+**Current version: 0.1.4**
 
 This tool provides a Model Context Protocol (MCP) server for fetching content from websites and converting it to different formats using Playwright.
 
@@ -65,6 +65,8 @@ This will start an HTTP server providing the following endpoints:
 
 To use this server in an MCP client, use the following configuration:
 
+### SSE Transport
+
 ```json
 {
   "mcpServers": {
@@ -77,7 +79,22 @@ To use this server in an MCP client, use the following configuration:
 }
 ```
 
-You can replace `fetch-tools` with any name you prefer, and adjust the URL according to your deployment environment.
+### stdio Transport
+
+```json
+{
+  "mcpServers": {
+    "fetch-tools": {
+      "enabled": true,
+      "transport": "stdio",
+      "command": "uvx",
+      "args": ["playwright-mcp-fetch"]
+    }
+  }
+}
+```
+
+You can replace `fetch-tools` with any name you prefer, and adjust the URL or command according to your deployment environment.
 
 ## API Examples
 
