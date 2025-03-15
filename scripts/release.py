@@ -15,6 +15,7 @@ import re
 import sys
 import subprocess
 from pathlib import Path
+from datetime import datetime
 
 def update_version(version):
     """更新所有文件中的版本號"""
@@ -50,11 +51,48 @@ def update_version(version):
     )
     setup_file.write_text(content, encoding="utf-8")
     print(f"✅ 已更新 {setup_file}")
+    
+    # 更新 CHANGELOG.md
+    update_changelog(version)
+
+def update_changelog(version):
+    """更新 CHANGELOG.md"""
+    changelog_file = Path("CHANGELOG.md")
+    if not changelog_file.exists():
+        print(f"⚠️ {changelog_file} 不存在，跳過更新")
+        return
+    
+    content = changelog_file.read_text(encoding="utf-8")
+    
+    # 獲取當前日期
+    today = datetime.now().strftime("%Y-%m-%d")
+    
+    # 將 [未發布] 替換為新版本
+    new_version_header = f"## [{version}] - {today}"
+    content = content.replace("## [未發布]", new_version_header)
+    
+    # 添加新的 [未發布] 部分
+    unreleased_section = """## [未發布]
+
+### 新增
+- 
+
+### 修改
+- 
+
+### 修復
+- 
+"""
+    content = content.replace("# 更新日誌", "# 更新日誌\n\n" + unreleased_section)
+    
+    # 寫回文件
+    changelog_file.write_text(content, encoding="utf-8")
+    print(f"✅ 已更新 {changelog_file}")
 
 def git_commit_and_tag(version):
     """提交更改並創建標籤"""
     # 提交更改
-    subprocess.run(["git", "add", "playwright_mcp_fetch/__init__.py", "pyproject.toml", "setup.py"], check=True)
+    subprocess.run(["git", "add", "playwright_mcp_fetch/__init__.py", "pyproject.toml", "setup.py", "CHANGELOG.md"], check=True)
     subprocess.run(["git", "commit", "-m", f"Bump version to {version}"], check=True)
     print("✅ 已提交版本更新")
 
