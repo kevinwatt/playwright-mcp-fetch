@@ -134,9 +134,8 @@ def main():
         logger.info("Environment variables settings:")
         logger.info(f"- fetch_html: {os.environ.get('fetch_html', 'Disable')} (default: Disable)")
         
-        # Run the server using stdio transport
-        import anyio
-        anyio.run(server.run_stdio_async)
+        # 直接使用 server.run 方法，這是同步的
+        server.run(transport="stdio")
     except KeyboardInterrupt:
         logger.info("Server shutting down...")
     except Exception as e:

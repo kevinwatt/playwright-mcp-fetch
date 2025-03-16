@@ -35,37 +35,21 @@ playwright install
 
 ## Usage
 
-### Run as stdio MCP Server
+### Run as MCP Server (SSE Transport)
 
 ```bash
-playwright-mcp-fetch
-```
-
-### Run as SSE MCP Server
-
-```bash
-# Run with the SSE transport
+# Run the MCP server with SSE transport
 playwright-mcp-fetch-sse
 ```
 
-This will start an HTTP server providing the following endpoints:
-
-- `GET /`: Server status page
-- `GET /sse`: SSE connection endpoint
-- `POST /api/list-tools`: List available tools
-- `POST /api/call-tool`: Call a tool
-
 ### Environment Variables
 
-- `PORT`: HTTP server port (default: 3000)
-- `TRANSPORT_TYPE`: Transport type, either `stdio` or `sse` (default: `stdio`)
-- `fetch_html`: Whether to enable the `fetch_html` tool, either `Enable` or `Disable` (default: `Disable`)
+- `fetch_html`: Set to "Enable" to enable the fetch_html tool (default: "Disable")
+- `PORT`: Set the HTTP port for the SSE server (default: 3000)
 
-## MCP Client Configuration
+### MCP Client Configuration
 
-To use this server in an MCP client, use the following configuration:
-
-### SSE Transport
+To use this server with an MCP client, configure the client to connect to the SSE endpoint:
 
 ```json
 {
@@ -73,28 +57,12 @@ To use this server in an MCP client, use the following configuration:
     "fetch-tools": {
       "enabled": true,
       "transport": "sse",
-      "url": "http://localhost:3000/sse"
+      "url": "http://localhost:3000/sse",
+      "postUrl": "http://localhost:3000/messages"
     }
   }
 }
 ```
-
-### stdio Transport
-
-```json
-{
-  "mcpServers": {
-    "fetch-tools": {
-      "enabled": true,
-      "transport": "stdio",
-      "command": "uvx",
-      "args": ["playwright-mcp-fetch"]
-    }
-  }
-}
-```
-
-You can replace `fetch-tools` with any name you prefer, and adjust the URL or command according to your deployment environment.
 
 ## API Examples
 

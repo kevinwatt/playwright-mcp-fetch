@@ -6,7 +6,9 @@
 - 
 
 ### 修改
-- 
+- 放棄 stdio 傳輸方式，改用純 SSE 傳輸
+- 移除 playwright-mcp-fetch 和 playwright-mcp-fetch-direct 入口點，只保留 playwright-mcp-fetch-sse
+- 更新文檔以反映只使用 SSE 傳輸的變更
 
 ### 修復
 - 
