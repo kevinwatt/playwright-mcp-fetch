@@ -197,7 +197,7 @@ async def sse_endpoint(request: Request):
 async def list_tools():
     """List available tools."""
     try:
-        tools_response = await list_tools_handler({})
+        tools_response = await list_tools_handler()
         return tools_response
     except Exception as e:
         logger.error(f"Error listing tools: {str(e)}")

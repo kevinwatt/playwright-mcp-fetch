@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "@automatalabs-mcp-server-playwright": {
+      "runtime": "node",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@automatalabs/mcp-server-playwright"
+      ]
+    },
+    "fetch-tools": {
+      "enabled": true,
+      "command": "/home/kevin/project/playwright-fetch-mcp/run_mcp_fetch.sh",
+      "args": [],
+      "transport": "command"
+    }
+  }
+} 
