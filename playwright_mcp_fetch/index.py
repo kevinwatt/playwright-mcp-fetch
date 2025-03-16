@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 # Create server instance with FastMCP
 server = FastMCP(
     name="mcp-fetch",
-    version="0.1.0",
+    version="0.1.5",
 )
 
 # Check if fetch_html tool is enabled

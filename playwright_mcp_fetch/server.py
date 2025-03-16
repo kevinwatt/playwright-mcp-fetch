@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 app = FastAPI(
     title="MCP Fetch Server",
     description="A MCP server with Playwright fetch tools",
-    version="0.1.0"
+    version="0.1.5"
 )
 
 # Add CORS middleware

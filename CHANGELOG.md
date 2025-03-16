@@ -12,16 +12,18 @@
 - 
 
 
-## [0.1.4] - 2025-03-16
+## [0.1.5] - 2025-03-16
 
 ### 新增
 - 
 
 ### 修改
-- 
+- 修改 FastMCP 服務器啟動方式，使用 anyio.run(server.run_stdio_async) 代替 asyncio.run(main_async())
+- 優化 list_tools_handler 函數，在每次調用時檢查環境變數
 
 ### 修復
-- 
+- 修復 'FastMCP' object has no attribute 'set_request_handler' 錯誤
+- 修復測試中的環境變數檢查問題
 
 
 ## [0.1.4] - 2025-03-16

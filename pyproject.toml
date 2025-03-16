@@ -1,6 +1,6 @@
 [project]
 name = "playwright-mcp-fetch"
-version = "0.1.4"
+version = "0.1.5"
 description = "A MCP server with playwright fetch tools"
 readme = "README.md"
 requires-python = ">=3.10"
